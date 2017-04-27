@@ -217,7 +217,7 @@ class Entry
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Wallabag\GroupBundle\Entity\Group", inversedBy="presentations", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Wallabag\GroupBundle\Entity\Group", inversedBy="entries", cascade={"persist"})
      */
     private $groupShares;
 
@@ -706,5 +706,21 @@ class Entry
         $this->httpStatus = $httpStatus;
 
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getGroupShares()
+    {
+        return $this->groupShares;
+    }
+
+    /**
+     * @param ArrayCollection $groupShares
+     */
+    public function setGroupShares($groupShares)
+    {
+        $this->groupShares = $groupShares;
     }
 }

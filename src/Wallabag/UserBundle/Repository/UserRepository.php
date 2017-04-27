@@ -52,4 +52,12 @@ class UserRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findGroupMembers($groupid)
+	{
+		return $this->createQueryBuilder('u')
+			->leftJoin('u.userGroups', 'usergroup')
+			->where('usergroup.group = :group')->setParameter(':group', $groupid)
+			->andWhere('usergroup.accepted = true');
+	}
 }
